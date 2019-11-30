@@ -12,6 +12,73 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
+export class UMA extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save UMA entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save UMA entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("UMA", id.toString(), this);
+  }
+
+  static load(id: string): UMA | null {
+    return store.get("UMA", id) as UMA | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get totalDerivatives(): i32 {
+    let value = this.get("totalDerivatives");
+    return value.toI32();
+  }
+
+  set totalDerivatives(value: i32) {
+    this.set("totalDerivatives", Value.fromI32(value));
+  }
+
+  get derivatives(): Array<string> {
+    let value = this.get("derivatives");
+    return value.toStringArray();
+  }
+
+  set derivatives(value: Array<string>) {
+    this.set("derivatives", Value.fromStringArray(value));
+  }
+
+  get totalMarginUsd(): BigDecimal {
+    let value = this.get("totalMarginUsd");
+    return value.toBigDecimal();
+  }
+
+  set totalMarginUsd(value: BigDecimal) {
+    this.set("totalMarginUsd", Value.fromBigDecimal(value));
+  }
+
+  get totalMarginEth(): BigDecimal {
+    let value = this.get("totalMarginEth");
+    return value.toBigDecimal();
+  }
+
+  set totalMarginEth(value: BigDecimal) {
+    this.set("totalMarginEth", Value.fromBigDecimal(value));
+  }
+}
+
 export class TokenizedDerivative extends Entity {
   constructor(id: string) {
     super();
@@ -49,15 +116,6 @@ export class TokenizedDerivative extends Entity {
 
   set count(value: BigInt) {
     this.set("count", Value.fromBigInt(value));
-  }
-
-  get contractAddress(): Bytes {
-    let value = this.get("contractAddress");
-    return value.toBytes();
-  }
-
-  set contractAddress(value: Bytes) {
-    this.set("contractAddress", Value.fromBytes(value));
   }
 
   get marginCurrencyAddress(): Bytes {

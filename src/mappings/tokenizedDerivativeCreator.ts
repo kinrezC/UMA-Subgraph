@@ -1,21 +1,21 @@
-import { BigInt } from "@graphprotocol/graph-ts";
 import { CreatedTokenizedDerivative } from "../../generated/TokenizedDerivativeCreator/TokenizedDerivativeCreator";
-import { TokenizedDerivative } from "../../generated/schema";
+import { TokenizedDerivative, UMA } from "../../generated/schema";
+import { zeroBD } from "../helpers";
 
 export function handleCreatedTokenizedDerivative(
   event: CreatedTokenizedDerivative
 ): void {
-  let entity = TokenizedDerivative.load(event.transaction.from.toHex());
-
-  if (entity == null) {
-    entity = new TokenizedDerivative(event.transaction.from.toHex());
-
-    entity.count = BigInt.fromI32(0);
+  let uma = UMA.load("main");
+  if (uma == null) {
+    uma = new UMA("main");
+    uma.totalDerivatives = 0;
+    uma.totalMarginUsd = zeroBD();
+    uma.totalMarginEth = zeroBD();
   }
 
-  entity.count = entity.count + BigInt.fromI32(1);
+  uma.totalDerivatives += 1;
 
-  entity.contractAddress = event.params.contractAddress;
+  let entity = new TokenizedDerivative(event.params.contractAddress.toHex());
 
   entity.save();
 }

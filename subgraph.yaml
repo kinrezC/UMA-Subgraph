@@ -14,6 +14,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - TokenizedDerivative
+        - UMA
       abis:
         - name: TokenizedDerivativeCreator
           file: ./abis/TokenizedDerivativeCreator.json
