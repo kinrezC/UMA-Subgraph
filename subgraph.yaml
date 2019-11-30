@@ -1,23 +1,40 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Contract
+    name: TokenizedDerivativeCreator
     network: rinkeby
     source:
       address: "0xB5E894106c5BdD1198E0eaCc8D59c9166F83AD30"
-      abi: Contract
+      abi: TokenizedDerivativeCreator
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
-        - CreatedTokenizedDerivative
+        - TokenizedDerivative
       abis:
-        - name: Contract
-          file: ./abis/Contract.json
+        - name: TokenizedDerivativeCreator
+          file: ./abis/TokenizedDerivativeCreator.json
       eventHandlers:
         - event: CreatedTokenizedDerivative(address)
           handler: handleCreatedTokenizedDerivative
-      file: ./src/mapping.ts
+      file: ./src/mappings/tokenizedDerivativeCreator.ts
+templates: 
+  - kind: ethereum/contract
+    name: TokenizedDerivative
+    network: rinkeby
+    source: 
+      abi: TokenizedDerivative
+    mapping: 
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities: 
+        - TokenizedDerivative
+      abis:
+        - name: TokenizedDerivative
+          file: ./abis/TokenizedDerivative.json
+      file: ./src/mappings/tokenizedDerivative.ts
+
