@@ -1,0 +1,215 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_finderAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_returnCalculatorWhitelist",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_marginCurrencyWhitelist",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isTest",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "contractAddress",
+        "type": "address"
+      }
+    ],
+    "name": "CreatedTokenizedDerivative",
+    "type": "event"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getCurrentTime",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isTest",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "marginCurrencyWhitelist",
+    "outputs": [
+      {
+        "internalType": "contract AddressWhitelist",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "returnCalculatorWhitelist",
+    "outputs": [
+      {
+        "internalType": "contract AddressWhitelist",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_time",
+        "type": "uint256"
+      }
+    ],
+    "name": "setCurrentTime",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "priceFeedAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "defaultPenalty",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supportedMove",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "product",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fixedYearlyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "disputeDeposit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "returnCalculator",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startingTokenPrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "marginCurrency",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "withdrawLimit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum TokenizedDerivativeParams.ReturnType",
+            "name": "returnType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startingUnderlyingPrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TokenizedDerivativeCreator.Params",
+        "name": "params",
+        "type": "tuple"
+      }
+    ],
+    "name": "createTokenizedDerivative",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "derivativeAddress",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

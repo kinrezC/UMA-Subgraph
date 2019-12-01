@@ -1,6 +1,6 @@
 import { BigDecimal, Address } from "@graphprotocol/graph-ts";
 import { CreatedTokenizedDerivative } from "../../generated/TokenizedDerivativeCreator/TokenizedDerivativeCreator";
-import { TokenizedDerivative, UMA } from "../../generated/schema";
+import { TokenizedDerivative, Uma } from "../../generated/schema";
 import { TokenizedDerivative as TokenizedDerivativeContract } from "../../generated/templates";
 import { zeroBD } from "../helpers";
 
@@ -26,9 +26,9 @@ function appendTd(tdAddr: string, marginAddr: Address): void {
 export function handleCreatedTokenizedDerivative(
   event: CreatedTokenizedDerivative
 ): void {
-  let uma = UMA.load("main");
+  let uma = Uma.load("main");
   if (uma == null) {
-    uma = new UMA("main");
+    uma = new Uma("main");
     uma.count = 0;
     uma.totalMarginUsd = zeroBD();
     uma.totalMarginEth = zeroBD();
@@ -40,9 +40,16 @@ export function handleCreatedTokenizedDerivative(
 
   const marginAddr = bind.try_derivativeStorage();
 
-  log.debug("Checking for margin token data: {}", [marginAddr.toString()]);
+  if (marginAddr.reverted) {
+    log.debug("Derivative storage call failed", []);
+  } else {
+    log.debug("Checking for margin token data: {}", [
+      marginAddr.value.value0.toString()
+    ]);
+  }
 
   //const td = appendTd(event.params.contractAddress.toHexString());
 
   TokenizedDerivativeContract.create(event.params.contractAddress);
+  uma.save();
 }

@@ -1,2 +1,2 @@
-import { TokenizedDerivative, UMA } from "../../generated/schema";
+import { TokenizedDerivative, Uma } from "../../generated/schema";
 import { zeroBD } from "../helpers";

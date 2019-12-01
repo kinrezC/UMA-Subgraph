@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class UMA extends Entity {
+export class Uma extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,17 @@ export class UMA extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save UMA entity without an ID");
+    assert(id !== null, "Cannot save Uma entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save UMA entity with non-string ID. " +
+      "Cannot save Uma entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("UMA", id.toString(), this);
+    store.set("Uma", id.toString(), this);
   }
 
-  static load(id: string): UMA | null {
-    return store.get("UMA", id) as UMA | null;
+  static load(id: string): Uma | null {
+    return store.get("Uma", id) as Uma | null;
   }
 
   get id(): string {
