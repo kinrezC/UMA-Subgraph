@@ -51,15 +51,6 @@ export class Uma extends Entity {
     this.set("count", Value.fromI32(value));
   }
 
-  get derivatives(): Array<string> {
-    let value = this.get("derivatives");
-    return value.toStringArray();
-  }
-
-  set derivatives(value: Array<string>) {
-    this.set("derivatives", Value.fromStringArray(value));
-  }
-
   get totalMarginUsd(): BigDecimal {
     let value = this.get("totalMarginUsd");
     return value.toBigDecimal();

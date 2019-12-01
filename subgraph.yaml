@@ -26,6 +26,10 @@ dataSources:
       eventHandlers:
         - event: CreatedTokenizedDerivative(address)
           handler: handleCreatedTokenizedDerivative
+      # callHandlers:
+        # - function: createTokenizedDerivative((address, uint256, uint256, bytes32, uint256, uint256, address, uint256, uint256, address, uint256, uint8, uint256, string, string))
+        # - function: createTokenizedDerivative(tuple)
+        #   handler: handleCreateDerivative
       file: ./src/mappings/tokenizedDerivativeCreator.ts
 templates: 
   - kind: ethereum/contract

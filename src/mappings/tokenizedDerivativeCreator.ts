@@ -1,5 +1,8 @@
 import { BigDecimal, Address } from "@graphprotocol/graph-ts";
-import { CreatedTokenizedDerivative } from "../../generated/TokenizedDerivativeCreator/TokenizedDerivativeCreator";
+import {
+  CreatedTokenizedDerivative,
+  CreateTokenizedDerivativeCall
+} from "../../generated/TokenizedDerivativeCreator/TokenizedDerivativeCreator";
 import { TokenizedDerivative, Uma } from "../../generated/schema";
 import { TokenizedDerivative as TokenizedDerivativeContract } from "../../generated/templates";
 import { zeroBD } from "../helpers";
@@ -44,7 +47,7 @@ export function handleCreatedTokenizedDerivative(
     log.debug("Derivative storage call failed", []);
   } else {
     log.debug("Checking for margin token data: {}", [
-      marginAddr.value.value0.toString()
+      marginAddr.value.value1[5].toAddress().toHexString()
     ]);
   }
 
@@ -52,4 +55,10 @@ export function handleCreatedTokenizedDerivative(
 
   TokenizedDerivativeContract.create(event.params.contractAddress);
   uma.save();
+}
+
+export function handleCreateDerivative(
+  call: CreateTokenizedDerivativeCall
+): void {
+  log.debug("HandleCreate: {}", [call.inputs.params.toString()]);
 }
