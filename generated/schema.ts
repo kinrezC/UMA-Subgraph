@@ -42,13 +42,13 @@ export class UMA extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get totalDerivatives(): i32 {
-    let value = this.get("totalDerivatives");
+  get count(): i32 {
+    let value = this.get("count");
     return value.toI32();
   }
 
-  set totalDerivatives(value: i32) {
-    this.set("totalDerivatives", Value.fromI32(value));
+  set count(value: i32) {
+    this.set("count", Value.fromI32(value));
   }
 
   get derivatives(): Array<string> {
@@ -109,15 +109,6 @@ export class TokenizedDerivative extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt {
-    let value = this.get("count");
-    return value.toBigInt();
-  }
-
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
-  }
-
   get marginCurrencyAddress(): Bytes {
     let value = this.get("marginCurrencyAddress");
     return value.toBytes();
@@ -168,14 +159,5 @@ export class TokenizedDerivative extends Entity {
 
   set marginCurrencyDecimals(value: i32) {
     this.set("marginCurrencyDecimals", Value.fromI32(value));
-  }
-
-  get startTime(): i32 {
-    let value = this.get("startTime");
-    return value.toI32();
-  }
-
-  set startTime(value: i32) {
-    this.set("startTime", Value.fromI32(value));
   }
 }

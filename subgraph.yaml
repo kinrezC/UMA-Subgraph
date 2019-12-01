@@ -18,6 +18,10 @@ dataSources:
       abis:
         - name: TokenizedDerivativeCreator
           file: ./abis/TokenizedDerivativeCreator.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: TokenizedDerivative
+          file: ./abis/TokenizedDerivative.json
       eventHandlers:
         - event: CreatedTokenizedDerivative(address)
           handler: handleCreatedTokenizedDerivative
