@@ -1,4 +1,5 @@
 specVersion: 0.0.2
+repository: https://github.com/kinrezC/UMA-Subgraph
 schema:
   file: schema.graphql
 dataSources:
@@ -8,41 +9,16 @@ dataSources:
     source:
       address: "0xB5E894106c5BdD1198E0eaCc8D59c9166F83AD30"
       abi: TokenizedDerivativeCreator
-      startBlock: 5025931
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
       language: wasm/assemblyscript
+      file: TokenizedDerivativeCreator/TokenizedDerivativeCreator.wasm
       entities:
-        - TokenizedDerivative
         - UMA
       abis:
         - name: TokenizedDerivativeCreator
           file: TokenizedDerivativeCreator/abis/TokenizedDerivativeCreator.json
-        - name: ERC20
-          file: TokenizedDerivativeCreator/abis/ERC20.json
-        - name: TokenizedDerivative
-          file: TokenizedDerivativeCreator/abis/TokenizedDerivative.json
       eventHandlers:
         - event: CreatedTokenizedDerivative(address)
           handler: handleCreatedTokenizedDerivative
-      callHandlers:
-        - function: createTokenizedDerivative(tuple)
-          handler: handleCreateDerivative
-      file: TokenizedDerivativeCreator/TokenizedDerivativeCreator.wasm
-templates:
-  - kind: ethereum/contract
-    name: TokenizedDerivative
-    network: rinkeby
-    source:
-      abi: TokenizedDerivative
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.3
-      language: wasm/assemblyscript
-      entities:
-        - TokenizedDerivative
-      abis:
-        - name: TokenizedDerivative
-          file: TokenizedDerivative/abis/TokenizedDerivative.json
-      file: templates/TokenizedDerivative/TokenizedDerivative.wasm

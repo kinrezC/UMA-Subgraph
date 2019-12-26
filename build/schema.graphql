@@ -1,16 +1,4 @@
-# UMA Global params across all derivatives
 type Uma @entity {
   id: ID!
   count: Int!
-#  derivatives: [TokenizedDerivative!]!
-  totalMarginUsd: BigDecimal!
-  totalMarginEth: BigDecimal!
-}
-
-type TokenizedDerivative @entity {
-  id: ID!
-  marginCurrencyAddress: Bytes!
-  marginCurrencySymbol: String
-  marginCurrencyName: String
-  marginCurrencyDecimals: Int
 }
